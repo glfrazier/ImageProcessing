@@ -1,3 +1,8 @@
+opencv
+opencv_contrib
+.vagrant
+*.log
+
 # Prerequisites
 *.d
 
