@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
+  config.disksize.size = '100GB'
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,13 +70,15 @@ Vagrant.configure("2") do |config|
     apt-get install -y cmake libgtk2.0-dev python-dev
     apt-get install -y pkg-config libavcodec-dev libavformat-dev libswscale-dev
     apt-get install -y python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev jasper libdc1394-22-dev
-    sudo vagrant
+    apt-get install -y emacs
     cd /home/vagrant
-    git clone https://github.com/opencv/opencv.git
-    git clone https://github.com/opencv/opencv_contrib.git
+    sudo -u vagrant git clone https://github.com/opencv/opencv.git
+    sudo -u vagrant git clone https://github.com/opencv/opencv_contrib.git
     cd opencv
-    mkdir build
+    sudo -u vagrant mkdir build
     cd build
-    cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -DBUILD_DOCS=ON -DBUILD_EXAMPLES=ON -DOPENCV_GENERATE_PKGCONFIG=ON ..
+    sudo -u vagrant cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -DBUILD_DOCS=ON -DBUILD_EXAMPLES=ON -DOPENCV_GENERATE_PKGCONFIG=ON ..
+    sudo -u vagrant make -j2
+    make install
   SHELL
 end
