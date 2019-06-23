@@ -2,6 +2,10 @@
 using namespace cv;
 int main( int argc, char** argv )
 {
+	if (argc != 2) {
+		fprintf(stderr, "Usage: %s <image name>\n", argv[0]);
+		return -1;
+	}
  char* imageName = argv[1];
  Mat image;
  image = imread( imageName, IMREAD_COLOR );
