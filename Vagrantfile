@@ -66,10 +66,11 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
+    apt-get upgrade
     apt-get install -y git g++ build-essential
-    apt-get install -y cmake libgtk2.0-dev python-dev
+    apt-get install -y cmake libgtk2.0-dev python3-dev
     apt-get install -y pkg-config libavcodec-dev libavformat-dev libswscale-dev
-    apt-get install -y python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev jasper libdc1394-22-dev
+    apt-get install -y python3-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev jasper libdc1394-22-dev
     apt-get install -y emacs
     cd /home/vagrant
     sudo -u vagrant git clone https://github.com/opencv/opencv.git

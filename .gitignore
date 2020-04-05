@@ -1,5 +1,6 @@
 opencv
 opencv_contrib
+learnopencv
 .vagrant
 *.log
 *[0-9]
